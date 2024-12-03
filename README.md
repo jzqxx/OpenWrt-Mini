@@ -1,4 +1,4 @@
-<div align="center">
+﻿<div align="center">
 <h1>OpenWrt-Mini  急速精简版，每周五-12点-云编译更新</h1>
 </div>
 
@@ -20,4 +20,4 @@
 
 ## 固件截图
 
-![avatar](https://github.com/jzqxx/demo/blob/main/jpg/OpenWrt-Mini.png)
+![avatar](https://github.com/WukongMaster/demo/blob/main/jpg/OpenWrt-Mini.png)
