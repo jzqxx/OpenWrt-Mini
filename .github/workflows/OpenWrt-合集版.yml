@@ -2,8 +2,8 @@ name:  OpenWrt-合集版
 
 on: 
   workflow_dispatch:
-#  schedule:
-#    - cron: 20 00 * * *
+  schedule:
+    - cron: 20 00 * * *
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
@@ -61,15 +61,15 @@ jobs:
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
-        sudo mkdir -p /workdir
-        sudo chown $USER:$GROUPS /workdir
+        sudo mkdir -p /mnt/workdir
+        sudo chown $USER:$GROUPS /mnt/workdir
 
     - name: 克隆固件源码
-      working-directory: /workdir
+      working-directory: /mnt/workdir
       run: |
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
-        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        ln -sf /mnt/workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: 添加外部插件
       run: |
@@ -151,9 +151,9 @@ jobs:
         echo "release_tag=${{ env.TAG_TIME }}" >> $GITHUB_OUTPUT
         touch release.txt
         echo "OpenWrt-Mini_ X86_64（支持ipv6）" >> release.txt
-        echo "管理地址：192.168.2.1" >> release.txt
+        echo "管理地址：192.168.123.254" >> release.txt
         echo "默认密码：无密码" >> release.txt
-        echo "插件清单：ShadowSocksR Plus+，PassWall，OpenClash" >> release.txt
+        echo "插件清单：ShadowSocksR Plus+，PassWall，MosDns，OpenClash" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: 发布新版固件
